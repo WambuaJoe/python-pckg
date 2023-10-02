@@ -1,0 +1,47 @@
+
+"""
+#!/usr/bin/python3
+""" Adds all arguments to list """
+
+
+`if __name__ == "__main__":
+    from sys import argv
+    save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
+    load_from_json_file =
+                __import__("6-load_from_json_file").load_from_json_file
+`
+    data = []
+    try:
+        data = load_from_json_file("add_items.json")
+        for item in argv[1:]:
+            data.append(item)
+        save_to_json_file(data, "add_item.json")
+    except FileNotFoundError:
+        for item in argv[1:]:
+            data.append(item)item
+        save_to_json_file(data, "add_item.json")
+
+
+#!/usr/bin/python3
+"""Object from JSON file"""
+import json
+
+
+def load_from_json_file(filename):
+    """Creates object"""
+
+    with open(filename, encoding="utf-8") as f:
+        return json.load(f)
+
+
+#!/usr/bin/python3
+"""Save JSON string to file"""
+import json
+
+
+def save_to_json_file(my_obj, filename):
+    """Save JSON to file"""
+
+    with open(filename, "w+", encoding="utf-8") as f:
+        return f.write(json.dumps(my_obj))
+"""

@@ -1,0 +1,41 @@
+=======================
+module: "add_integer"
+=======================
+
+Testing "add_int" function
+
+>>> add_int = __import__('add_integer').add_int
+
+Testing cases:
+
+>>> add_int(1, 2)
+3
+
+>>> add_int(10, -4)
+6
+
+>>> add_int(6)
+11
+
+>>> add_int(10.4, -4)
+6
+
+>>> add_int('School')
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_int()
+Traceback (most recent call last):
+TypeError: add_int() missing 1 required positional argument: 'a'
+
+>>> add_int(100.5, 0.55)
+100
+
+>>> add_int(0)
+5
+
+>>> add_int(-5)
+0
+
+>>> add_int(-4, -6)
+-10
