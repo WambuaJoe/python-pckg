@@ -1,39 +1,46 @@
-class Restaurant:
+class Employees:
 
-	number_of_rest = 0
-	def __init__(self, restaurant_name, cuisine_type):
-		self.restaurant_name =restaurant_name
-		self.cuisine_type = cuisine_type
+	num_of_emps = 0
+	raise_amt = 1.04
 
-		Restaurant.number_of_rest += 1
+	def __init__(self, first, last, pay):
+		self.first = first
+		self.last = last
+		self.pay = pay
+		self.email = "{}.{}@email.com".format(first, last)
 
-	def describe_restaurant(self):
-		""" gives a simple description of the restaurant """
-		print("Restaurant name: {}\nCuisine type: {}\n".format(
-					self.restaurant_name, self.cuisine_type
-		))
+		Employees.num_of_emps += 1
+
+	def fullname(self):
+		return "{} {}".format(self.first.title(), self.last.title())
 	
-	def open_restaurant(self):
-		""" indicates that restaurant is open """
-		print("\n{} is open!".format(self.restaurant_name))
+	def apply_raise(self):
+		self.pay = int(self.pay * self.raise_amt)
 
+	@classmethod
+	def set_raise_amt(cls, amount):
+		cls.raise_amt = amount
+	
+	@classmethod
+	def parse_str(cls, emp_str):
+		first, last, pay = emp_str.split('-')
+		return cls(first, last, pay)
 
-for num in range(Restaurant.number_of_rest):
-	if num == 0:
-		print("No restaurants recorded")
-	elif num == 1:
-		print("Only 1 restaurant: {}".format(Restaurant.number_of_rest))
-	else:
-		print("Restaurants: {}".format(Restaurant.number_of_rest))
+# usr_input = input("Enter first & last names, and pay (separated by a space):\n")
+# usr_input = usr_input.split(' ')
+# if len(usr_input) != 3:
+	# print("Make sure to enter 3 values separated by a space")
+# else:
+	# fName = usr_input[0]
+	# lName = usr_input[1]
+	# salary = int(usr_input[2])
+# 
+# emp1 = Employees(fName, lName, salary)
+# print("Full name: {}\nEmail: {}\nSalary: {}".format(
+			# emp1.fullname(), emp1.email, emp1.pay
+# ))
+# 
+emp_str1 = 'joe-wambua-45000'
 
-restaurant1 = Restaurant("The Swa Spot", "Swahili dishes")
-restaurant1.describe_restaurant()
-
-restaurant2 = Restaurant("Bits n Bytez", "Mexican bitings")
-restaurant2.describe_restaurant()
-
-restaurant3 = Restaurant("Benjy's", "Quick lunches")
-restaurant3.describe_restaurant()
-
-print()
-
+new_emp1 = Employees.parse_str(emp_str1)
+print(new_emp1.fullname())
