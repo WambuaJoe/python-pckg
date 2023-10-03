@@ -24,6 +24,7 @@ class Employees:
 	@classmethod
 	def parse_str(cls, emp_str):
 		first, last, pay = emp_str.split('-')
+		pay = int(pay)
 		return cls(first, last, pay)
 
 # usr_input = input("Enter first & last names, and pay (separated by a space):\n")
@@ -37,10 +38,18 @@ class Employees:
 # 
 # emp1 = Employees(fName, lName, salary)
 # print("Full name: {}\nEmail: {}\nSalary: {}".format(
-			# emp1.fullname(), emp1.email, emp1.pay
+# emp1.fullname(), emp1.email, emp1.pay
 # ))
 # 
-emp_str1 = 'joe-wambua-45000'
 
-new_emp1 = Employees.parse_str(emp_str1)
-print(new_emp1.fullname())
+
+if __name__ == '__main__':
+
+	emp_str1 = 'joe-wambua-45000'
+
+	new_emp1 = Employees.parse_str(emp_str1)
+	print(new_emp1.fullname())
+	print(new_emp1.email)
+	print("Before raise: {}".format(new_emp1.pay))
+	new_emp1.apply_raise()
+	print("After raise: {}".format(new_emp1.pay))
