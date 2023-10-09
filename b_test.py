@@ -1,5 +1,20 @@
-def raiseError():
+def my_function(a, b):
+    """Returns a * b.
+
+    >>> my_function(['A', 'B'], 3) #doctest: +NORMALIZE_WHITESPACE
+    ['A', 'B',
+     'A', 'B',
+     'A', 'B']
+
+    This does not match because of the extra space after the [ in
+    the list.
+
+    >>> my_function(['A', 'B'], 2) #doctest: +NORMALIZE_WHITESPACE
+    [ 'A', 'B',
+      'A', 'B', ]
     """
-        this function always raises an Exception
-    """
-    raise RuntimeError("Here is the error")
+    return a * b
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(name='my_function', verbose=True)
