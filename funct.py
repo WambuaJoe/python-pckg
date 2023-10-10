@@ -3,19 +3,23 @@
 class Rectangle:
     def __init__(self, length, width, **kwargs):
         self.length = length
-        self. width = width
+        self.width = width
         super().__init__(**kwargs)
 
     def area(self):
         return self.length * self.width
 
     def perimeter(self):
-        return 2 *(self.length * self.width)
+        return 2 * (self.length * self.width)
+
 
 """ declare that Square inherits from Rectangle class """
+
+
 class Square(Rectangle):
     def __init__(self, length, **kwargs):
         super().__init__(length=length, width=length, **kwargs)
+
 
 class Cube(Square):
     def surface_area(self):
@@ -26,6 +30,7 @@ class Cube(Square):
         face_area = super().area()
         return face_area * self.length
 
+
 class Triangle:
     def __init__(self, base, height, **kwargs):
         self.base = base
@@ -34,6 +39,7 @@ class Triangle:
 
     def tri_area(self):
         return 0.5 * self.base * self.height
+
 
 class RightPyramid(Square, Triangle):
     def __init__(self, base, slant_height, **kwargs):
@@ -52,4 +58,3 @@ class RightPyramid(Square, Triangle):
         base_area = super().area()
         triangle_area = super().tri_area()
         return triangle_area * 4 + base_area
-
