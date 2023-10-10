@@ -1,55 +1,55 @@
-class Employees:
+#!/usr/bin/python3
 
-	num_of_emps = 0
-	raise_amt = 1.04
+class Rectangle:
+    def __init__(self, length, width, **kwargs):
+        self.length = length
+        self. width = width
+        super().__init__(**kwargs)
 
-	def __init__(self, first, last, pay):
-		self.first = first
-		self.last = last
-		self.pay = pay
-		self.email = "{}.{}@email.com".format(first, last)
+    def area(self):
+        return self.length * self.width
 
-		Employees.num_of_emps += 1
+    def perimeter(self):
+        return 2 *(self.length * self.width)
 
-	def fullname(self):
-		return "{} {}".format(self.first.title(), self.last.title())
-	
-	def apply_raise(self):
-		self.pay = int(self.pay * self.raise_amt)
+""" declare that Square inherits from Rectangle class """
+class Square(Rectangle):
+    def __init__(self, length, **kwargs):
+        super().__init__(length=length, width=length, **kwargs)
 
-	@classmethod
-	def set_raise_amt(cls, amount):
-		cls.raise_amt = amount
-	
-	@classmethod
-	def parse_str(cls, emp_str):
-		first, last, pay = emp_str.split('-')
-		pay = int(pay)
-		return cls(first, last, pay)
+class Cube(Square):
+    def surface_area(self):
+        face_area = super().area()
+        return face_area * 6
 
-# usr_input = input("Enter first & last names, and pay (separated by a space):\n")
-# usr_input = usr_input.split(' ')
-# if len(usr_input) != 3:
-	# print("Make sure to enter 3 values separated by a space")
-# else:
-	# fName = usr_input[0]
-	# lName = usr_input[1]
-	# salary = int(usr_input[2])
-# 
-# emp1 = Employees(fName, lName, salary)
-# print("Full name: {}\nEmail: {}\nSalary: {}".format(
-# emp1.fullname(), emp1.email, emp1.pay
-# ))
-# 
+    def volume(self):
+        face_area = super().area()
+        return face_area * self.length
 
+class Triangle:
+    def __init__(self, base, height, **kwargs):
+        self.base = base
+        self.height = height
+        super().__init__(**kwargs)
 
-if __name__ == '__main__':
+    def tri_area(self):
+        return 0.5 * self.base * self.height
 
-	emp_str1 = 'joe-wambua-45000'
+class RightPyramid(Square, Triangle):
+    def __init__(self, base, slant_height, **kwargs):
+        self.base = base
+        self.slant_height = slant_height
+        kwargs['height'] = slant_height
+        kwargs['length'] = base
+        super().__init(base=base, **kwargs)
 
-	new_emp1 = Employees.parse_str(emp_str1)
-	print(new_emp1.fullname())
-	print(new_emp1.email)
-	print("Before raise: {}".format(new_emp1.pay))
-	new_emp1.apply_raise()
-	print("After raise: {}".format(new_emp1.pay))
+    def area(self):
+        base_area = super().area()
+        perimeter = super().perimeter()
+        return 0.5 * perimeter * self.slant_height + base_area
+
+    def area_2(self):
+        base_area = super().area()
+        triangle_area = super().tri_area()
+        return triangle_area * 4 + base_area
+
