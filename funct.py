@@ -1,1 +1,3 @@
-wambua joseph katuamilan lokohenry katuayvonne syekonyo
+import os
+
+print("Current directory: ", os.getcwd())
