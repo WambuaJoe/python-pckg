@@ -1,52 +1,31 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python3
 import cmd
 
-class HelloWorld(cmd.Cmd):
-    """ simple command processor """
-    MABONZO = ['sean', 'kelly', 'mutua', 'mwangi', 'ian', 'nate']
 
-    def do_greet(self, person):
-        """ greet [person] """
-        if person.lower and person.lower in self.MABONZO:
-            greeting = f'{person.title()}, niaje we matako'
-        elif person:
-            greeting = f'{person.title()}, niaje'
-        else:
-            greeting = 'niaje'
-        print(greeting)
+class MyConsole(cmd.Cmd):
+    """ replicate a command line interpreter """
+    intro = "AirBnB command line intepreter.\nType 'help' or ? to list commands\n"
+    prompt = "(getsuga) "
 
-    def complete_greet(self, text, line, begidx, endidx):
-        if not text:
-            completions = self.MABONZO[:]
-        else:
-            completions = [ f for f in self.MABONZO if f.startswith(text)]
-        return completions
-
-    # def help_greet(self):
-    #     print('\n'.join([
-    #         'greet [person]',
-    #         'greet the named person (arg)',
-    #     ]))
-
-    prompt = 'prompt: '
-    intro = 'Simple command processor example.'
-
-    doc_header = 'doc_header'
-    misc_header = 'misc_header'
-    undoc_header = 'undoc_header'
-
-    ruler = '-'
-
-    def do_prompt(self, line):
-        "Change interactive prompt"
-        self.prompt = line + ': '
+    def do_create(self, line):
+        """ create anything """
+        print("created ", line)
 
     def do_EOF(self, line):
+        """ exit program using Ctrl-D """
+        print("Exiting console")
         return True
 
-    def postloop(self):
-        print()
+    def do_multiply(self, args):
+        """ multiply 2 numbers """
+        try:
+            a, b = map(float, args.split())
+            result = a * b
+            print(f"Mutliplication returns {result:.4f}")
+        except Exception as err:
+            error_name = type(err).__name__ 
+            print("Invalid input: Usage: multiply <num1> <num2>")
+            print(f"[{error_name}]: {err}")
 
 if __name__ == "__main__":
-    HelloWorld().cmdloop()
+    MyConsole().cmdloop()
