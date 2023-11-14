@@ -1,16 +1,24 @@
-class base():
-    def __init__(self):
-        print("In the base class")
-        self.s1 = "base class vara"
+#!/usr/bin/python3
 
-class derived(base):
-    def __init__(self):
-        super().__init__()
-        print("In the derived class")
-        self.s2= "derived class var"
-        # super().__init__()
+from collections import OrderedDict
+import json
 
+def load_data():
+    try:
+        with open('data.json', 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {}
 
-a=derived()
-print(a.s1)
-print(a.s2)
+def save_data(data):
+    with open('data.json', 'w') as file:
+        json.dump(data, file)
+
+my_dict = load_data()
+
+key = input("Enter a key: ")
+value = int(input("Enter a value: "))
+
+my_dict[key] = value
+save_data(my_dict)
+print(my_dict)
