@@ -8,6 +8,7 @@ class HelloWorld(cmd.Cmd):
 
     def do_greet(self, person):
         """ greet [person] """
+        name_variable = 'Joe'
         if person and person in self.MABONZO:
             greeting = f'niaje we matako, {person.title()}'
         elif person:
