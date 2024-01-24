@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # connect to MySQLdb
 
+import sqlalchemy
 import MySQLdb
 from sys import argv
 
