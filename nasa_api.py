@@ -3,8 +3,9 @@
 
 import requests
 
-response = requests.get("https://httpbin.org/")
+response = requests.get("https://httpbin.org/get")
 
 res_json = response.json()
-# del res_json['origin']
+del res_json['origin']
+print()
 print(res_json)
