@@ -3,9 +3,13 @@
 
 import requests
 
-response = requests.get("https://httpbin.org/get")
+headers = {
+    "User-Agent": "https://www2.thepiratebay3.to/",
+    "Accept": "image/png"
+}
+response = requests.get("https://httpbin.org/Image  ",
+                        headers=headers)
 
-res_json = response.json()
-del res_json['origin']
 print()
-print(res_json)
+with open("newImg.png", "wb") as fileObj:
+    fileObj.write(response.content)
