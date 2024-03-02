@@ -26,7 +26,7 @@ details"
         else:
             print(f"Contact {name.title()} already exists.\nUse 'update' to change contact details")
 
-    def do_read(self):
+    def do_read(self, args):
         """read all contacts"""
         if not self.contacts:
             print("Contact not found")
@@ -71,7 +71,7 @@ details"
     def do_EOF(self, args):
         """ exit the program """
         print("Exiting the program...")
-        return True
+        return False
 
 
 if __name__ == '__main__':
